@@ -1,0 +1,32 @@
+问题发生情景:
+在Fragment使用GestureDetector.OnGestureListener
+触摸当前Fragment,会触发下面一层的Fragment的事件
+
+当Fragment的栈里面有几个fragment的时候，这个时候如果是几个fragment状态是hide，当你触摸当前fragment的时候，
+下层的fragment的事件被触发，这是由于Touch事件泄露传到了下层中。
+解决方法就是拦截fragment的onTouch();
+
+public class GroupApplyFragment extends Fragment implements OnTouchListener {
+ 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        // 添加视图
+        View view = inflater.inflate(R.layout.fragment_in_group_apply,
+                container, false);
+         
+        return view;
+    }
+
+    // onTouch事件 将上层的触摸事件拦截
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
+    }
+ 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        // 拦截触摸事件，防止泄露下去
+        view.setOnTouchListener(this);
+    }
+}   
