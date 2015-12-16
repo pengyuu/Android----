@@ -1,0 +1,52 @@
+在项目中，一进入一个页面, EditText默认就会自动获取焦点。
+
+那么如何取消这个默认行为呢？
+
+在网上找了好久，有点 监听软键盘事件，有点 调用 clearFouse()方法，但是测试了都没有！ xml中也找不到相应的属性可以关闭这个默认行为
+
+解决之道：在EditText的父级控件中找一个，设置成
+
+   android:focusable="true"  
+   android:focusableInTouchMode="true"
+
+这样，就把EditText默认的行为截断了！
+
+
+<LinearLayout 
+        style="@style/FillWrapWidgetStyle"
+        android:orientation="vertical"
+        android:background="@color/black"
+        android:gravity="center_horizontal"
+        
+        android:focusable="true"  
+        android:focusableInTouchMode="true"
+        >
+        <ImageView
+            android:id="@+id/logo"
+            style="@style/WrapContentWidgetStyle"
+            android:background="@drawable/dream_dictionary_logo"
+          />
+        <RelativeLayout 
+            style="@style/FillWrapWidgetStyle"
+            android:background="@drawable/searchbar_bg"
+            android:gravity="center_vertical"
+            >
+            <EditText
+                android:id="@+id/searchEditText"
+               style="@style/WrapContentWidgetStyle"
+               android:background="@null"
+               android:hint="Search"
+               android:layout_marginLeft="40dp"
+               android:singleLine="true"
+             />
+            
+        </RelativeLayout>
+        
+    </LinearLayout>
+来自：http://blog.csdn.net/woshicaixianfeng/article/details/7261718   灰常感谢这位同学。。。
+
+还有一个方法也可以非常简单的实现这个功能：
+EditText对象的clearFocus();
+
+InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE); 
+imm.hideSoftInputFromWindow(editMsgView.getWindowToken(), 0);（关闭软键盘。。。）
