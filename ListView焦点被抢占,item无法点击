@@ -1,0 +1,2 @@
+ListView焦点被抢占,item无法点击
+在ListView的Adapter中注册item的最外层layout的点击
