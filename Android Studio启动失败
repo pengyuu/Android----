@@ -48,3 +48,8 @@ Caused by: java.io.IOException: An existing connection was forcibly closed by th
     at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:83)
     ... 30 more
 
+1) open cmd with Run as administrator
+
+2) type: netsh winsock reset
+
+3) restart computer
