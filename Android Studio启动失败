@@ -1,0 +1,50 @@
+Internal Error. Please report to https://https://code.google.com/p/android/issues
+
+java.lang.IllegalStateException: failed to create a child event loop
+    at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:81)
+    at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:48)
+    at io.netty.channel.MultithreadEventLoopGroup.<init>(MultithreadEventLoopGroup.java:57)
+    at io.netty.channel.nio.NioEventLoopGroup.<init>(NioEventLoopGroup.java:67)
+    at io.netty.channel.nio.NioEventLoopGroup.<init>(NioEventLoopGroup.java:54)
+    at org.jetbrains.io.BuiltInServer.start(BuiltInServer.java:79)
+    at com.intellij.idea.SocketLock$2.call(SocketLock.java:133)
+    at com.intellij.idea.SocketLock$2.call(SocketLock.java:113)
+    at com.intellij.idea.SocketLock.underLocks(SocketLock.java:157)
+    at com.intellij.idea.SocketLock.lock(SocketLock.java:113)
+    at com.intellij.idea.StartupUtil.lockSystemFolders(StartupUtil.java:263)
+    at com.intellij.idea.StartupUtil.prepareAndStart(StartupUtil.java:101)
+    at com.intellij.idea.MainImpl.start(MainImpl.java:34)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:497)
+    at com.intellij.ide.plugins.PluginManager$2.run(PluginManager.java:91)
+    at java.lang.Thread.run(Thread.java:745)
+Caused by: io.netty.channel.ChannelException: failed to open a new selector
+    at io.netty.channel.nio.NioEventLoop.openSelector(NioEventLoop.java:127)
+    at io.netty.channel.nio.NioEventLoop.<init>(NioEventLoop.java:119)
+    at io.netty.channel.nio.NioEventLoopGroup.newChild(NioEventLoopGroup.java:97)
+    at io.netty.channel.nio.NioEventLoopGroup.newChild(NioEventLoopGroup.java:31)
+    at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:77)
+    ... 18 more
+Caused by: java.io.IOException: Unable to establish loopback connection
+    at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:101)
+    at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:68)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at sun.nio.ch.PipeImpl.<init>(PipeImpl.java:170)
+    at sun.nio.ch.SelectorProviderImpl.openPipe(SelectorProviderImpl.java:50)
+    at java.nio.channels.Pipe.open(Pipe.java:155)
+    at sun.nio.ch.WindowsSelectorImpl.<init>(WindowsSelectorImpl.java:127)
+    at sun.nio.ch.WindowsSelectorProvider.openSelector(WindowsSelectorProvider.java:44)
+    at io.netty.channel.nio.NioEventLoop.openSelector(NioEventLoop.java:125)
+    ... 22 more
+Caused by: java.io.IOException: An existing connection was forcibly closed by the remote host
+    at sun.nio.ch.SocketDispatcher.read0(Native Method)
+    at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43)
+    at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+    at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+    at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+    at sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:139)
+    at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:83)
+    ... 30 more
+
